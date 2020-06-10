@@ -34,7 +34,6 @@ yarn-debug.log*
 .DS_Store
 .idea
 .generators
-.DS_Store
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
