@@ -2,6 +2,8 @@
 
 This app was made to help the working process of https://passage.org.uk/
 
+[![Build Status](https://travis-ci.org/brunomrlima/the_passage_shift.svg?branch=master)](https://travis-ci.org/brunomrlima/the_passage_shift)
+
 ## Prerequisites
 Rails version: 6.0.2
 
