@@ -1,46 +1,49 @@
 <% provide(:title, "Sign up") %>
+<% devise_error_messages %>
 
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :first_name, 'First Name' %> <br />
-    <%= f.text_field :first_name, autofocus: true, placeholder: 'First Name', required: true, autocomplete: true %>
+<div class="card text-center">
+  <div class="card-header">
+    <%= yield(:title) %>
   </div>
+  <div class="card-body">
+    <h5 class="card-title">Sign up to our Passage Shifts</h5>
+    <p class="card-text">Volunteer to help feed London’s homeless.</p>
 
-  <div class="field">
-    <%= f.label :last_name, 'Last Name'%> <br />
-    <%= f.text_field :last_name, placeholder: 'Last Name', required: true, autocomplete: true %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+      <div class="form-row justify-content-center">
+        <div class="form-group col-lg-3 col-md-6">
+          <%= f.text_field :first_name, autofocus: true, placeholder: 'First Name', required: true, autocomplete: true, class: "form-control mx-auto" %>
+        </div>
+        <div class="form-group col-lg-3 col-md-6">
+          <%= f.text_field :last_name, placeholder: 'Last Name', required: true, autocomplete: true, class: "form-control mx-auto" %>
+        </div>
+      </div>
+      <div class="form-group col-lg-4 col-md-6 mx-auto">
+        <%= f.email_field :email, autocomplete: "email", placeholder: "Email: example@domain.com", required: true, class: "form-control" %>
+      </div>
+      <div class="form-group col-lg-4 col-md-6 mx-auto">
+        <%= f.label :date_of_birth, 'Date of Birth'%>
+        <%= f.date_field :date_of_birth, placeholder: 'Date of Birth', required: true, autocomplete: true, class: "form-control" %>
+      </div>
+      <div class="form-group col-lg-4 col-md-6 mx-auto">
+        <% genders = Fetcher.fetch_genders %>
+        <%= f.label :gender, 'Gender (For statistical purposes)'%>
+        <%= f.select :gender, genders, {prompt: "Choose Gender..."}, {class: 'form-control', 'data-live-search': 'true'} %>
+      </div>
+      <div class="form-group col-lg-4 col-md-6 mx-auto">
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password (#{@minimum_password_length} characters minimum)", class: "form-control" %>
+      </div>
+      <div class="form-group col-lg-4 col-md-6 mx-auto">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password Confirmation", class: "form-control" %>
+      </div>
+
+      <div class="m-3">
+        <%= f.submit "Sign Up", class: "btn btn-secondary"%>
+      </div>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, placeholder: 'example@domain.com', autocomplete: "email" %>
+  <div class="card-footer text-muted">
+    <%= render "users/shared/links" %>
   </div>
-
-  <div class="field">
-    <%= f.label :date_of_birth, 'Date of Birth'%> <br />
-    <%= f.date_field :date_of_birth, placeholder: 'Date of Birth', required: true, autocomplete: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>

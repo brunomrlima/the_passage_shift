@@ -1,16 +1,26 @@
-<h2>Forgot your password?</h2>
+<% provide(:title, "Forgot your password?") %>
+<% devise_error_messages %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="card text-center">
+  <div class="card-header">
+    <%= yield(:title) %>
   </div>
+  <div class="card-body">
+    <h5 class="card-title">If you forgot your password, we will send you new password instructions</h5>
+    <p class="card-text">Volunteer to help feed London’s homeless.</p>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+
+      <div class="form-group col-lg-4 col-md-6 mx-auto">
+        <%= f.email_field :email, autocomplete: "email", placeholder: "Email: example@domain.com", required: true, class: "form-control", autofocus: true %>
+      </div>
+
+      <div class="m-3">
+        <%= f.submit "Send me reset password instructions", class: "btn btn-secondary"%>
+      </div>
+    <% end %>
   </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+  <div class="card-footer text-muted">
+    <%= render "users/shared/links" %>
+  </div>
+</div>
