@@ -8,13 +8,19 @@ RSpec.describe User, type: :model do
   end
 
   context "validations" do
-    before { create(:user) }
+    before { @user = create(:user) }
 
     context "presence" do
       it { should validate_presence_of :first_name }
       it { should validate_presence_of :last_name }
       it { should validate_presence_of :gender }
       it { should validate_presence_of :date_of_birth }
+    end
+
+    context "password" do
+      it 'is database authenticable' do
+        expect(@user.valid_password?(@user.password)).to be_truthy
+      end
     end
   end
 end
