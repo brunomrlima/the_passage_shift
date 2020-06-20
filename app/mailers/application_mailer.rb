@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'realvoidinfo@gmail.com'
+  default from: 'thepassageshift@gmail.com'
   layout 'mailer'
 end
