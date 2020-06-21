@@ -1,7 +1,7 @@
 <div class="container m-auto my-4">
-  <% unless true %>
-    <%= render 'landing' %>
-  <% else %>
+  <% if current_user.first_name.present? %>
     <%= render 'new' %>
+  <% else %>
+    <%= render 'landing' %>
   <% end %>
 </div>
