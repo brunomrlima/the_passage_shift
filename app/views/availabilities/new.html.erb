@@ -3,8 +3,10 @@
     <div class="col-12 m-auto p-12 text-center bg-white border border-gray-400 shadow">
       <div class="row">
         <% @days.each do |day| %>
-          <div class="col-2 border border-gray-400 shadow">
-            <%= day %>
+          <div class="col-2 border">
+            <b><%= day %></b>
+            <br />
+            <%= @time %>
           </div>
         <% end  %>
       </div>
