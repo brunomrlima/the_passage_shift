@@ -10,6 +10,7 @@ require("channels")
 
 import "bootstrap"
 import "../stylesheets/application"
+import "select2-full"
 
 document.addEventListener("turbolinks:load", () => {
     $('[data-toggle="tooltip"]').tooltip()

@@ -182,6 +182,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    select2-rails (4.0.13)
     shoulda-matchers (4.3.0)
       activesupport (>= 4.2.0)
     simplecov (0.18.5)
@@ -240,6 +241,7 @@ DEPENDENCIES
   rails (~> 6.0.3)
   rspec-rails (~> 4.0.0)
   sass-rails (>= 6)
+  select2-rails
   shoulda-matchers
   simplecov
   spring
