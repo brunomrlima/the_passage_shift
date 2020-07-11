@@ -1,0 +1,18 @@
+<div class="container my-4">
+  <div class="row">
+    <div class="col-12 m-auto p-12 text-center bg-white border border-gray-400 shadow">
+        <%= form_tag availabilities_path do %>
+        <div class="form-row">
+          <% @days.each do |day| %>
+            <div class="col-3 mb-5">
+              <b><%= day %></b>
+              <br />
+              <%= select_tag "availabilities[#{day}]", options_for_select(@time_list), {:multiple => true, :id => day, :class => "time_available form-control select2"} %>
+            </div>
+          <% end %>
+        </div>
+          <%= submit_tag "Save Hours", class: "btn btn-secondary" %>
+        <% end %>
+    </div>
+  </div>
+</div>

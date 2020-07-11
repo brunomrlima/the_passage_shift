@@ -1,0 +1,7 @@
+<div class="container my-4">
+  <% if @availabilities.none? %>
+    <%= render 'new' %>
+  <% else %>
+    <%= render 'landing' %>
+  <% end %>
+</div>
