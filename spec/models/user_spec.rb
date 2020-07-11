@@ -7,6 +7,12 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe 'Association' do
+    context 'has_many' do
+      it { should have_many(:availabilities) }
+    end
+  end
+
   context "validations" do
     before { @user = create(:user) }
 

@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :trackable
 
+  has_many :availabilities
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :gender, presence: true
