@@ -4,7 +4,7 @@
       <%= form_tag update_batch_availabilities_path do %>
         <div class="form-row">
           <% @days.each do |day| %>
-            <div class="col-3 mb-5">
+            <div class="col-lg-3 col-12 mb-5">
               <b><%= day %></b>
               <br />
               <%= select_tag "availabilities[#{day}]", options_for_select(@time_list, (@availabilities.where(day: day).last.hours.split(",") if @availabilities.where(day: day).present?)), {:multiple => true, :id => day, :class => "time_available form-control select2"} %>
