@@ -21,4 +21,17 @@ RSpec.describe Availability, type: :model do
       it { should validate_presence_of :hours }
     end
   end
+
+  describe "Methods" do
+    context "#delete_batch" do
+      it "expect to delete all days" do
+        user = create(:user)
+        create(:availability, user: user, day: "Monday")
+        create(:availability, user: user, day: "Tuesday")
+        create(:availability, user: user, day: "Saturday")
+        updating_days = ["Monday", "Wednesday", "Thursday"]
+        expect { Availability.delete_batch(user, updating_days) }.to change { user.availabilities.count }.by(-2)
+      end
+    end
+  end
 end

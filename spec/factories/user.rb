@@ -8,5 +8,14 @@ FactoryBot.define do
     pass = Faker::Internet.password
     password  { pass }
     password_confirmation { pass }
+
+    factory :user_with_availabilities do
+      transient do
+        availabilities_count { 7 }
+      end
+      after(:create) do |user, evaluator|
+        create_list(:availability, evaluator.availabilities_count, user: user)
+      end
+    end
   end
 end

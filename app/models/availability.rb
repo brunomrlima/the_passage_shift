@@ -3,7 +3,7 @@ class Availability < ApplicationRecord
   validates :day, presence: true
   validates :hours, presence: true
 
-  def self.delete_batch(user, reject_days)
-    user.availabilities.where.not(day: reject_days).destroy_all
+  def self.delete_batch(user, updating_days)
+    user.availabilities.where.not(day: updating_days).destroy_all
   end
 end

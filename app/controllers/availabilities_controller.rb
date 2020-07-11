@@ -23,8 +23,8 @@ class AvailabilitiesController < ApplicationController
   end
 
   def update_batch
-    reject_days = params["availabilities"].keys
-    Availability.delete_batch(current_user, reject_days)
+    updating_days = params["availabilities"].keys
+    Availability.delete_batch(current_user, updating_days)
     params["availabilities"].each do |day, hours_arr|
       hours = hours_arr.join(",")
       availability = Availability.find_or_create_by(user: current_user, day: day)
