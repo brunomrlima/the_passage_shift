@@ -1,5 +1,5 @@
 <div class="container my-4">
-  <% if current_user.first_name.present? %>
+  <% if @availabilities.none? %>
     <%= render 'new' %>
   <% else %>
     <%= render 'landing' %>
