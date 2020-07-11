@@ -3,10 +3,11 @@
     <div class="col-12 m-auto p-12 text-center bg-white border border-gray-400 shadow">
       <div class="row">
         <% @days.each do |day| %>
-          <div class="col-2 border">
+          <div class="col-4 mb-5">
             <b><%= day %></b>
             <br />
-            <%= @time_list %>
+            <%= select_tag :availabilities, options_for_select(@time_list), {:multiple => true, :id => day, :class => "time_available form-control select2"} %>
+            <%#= @time_list %>
           </div>
         <% end  %>
       </div>
