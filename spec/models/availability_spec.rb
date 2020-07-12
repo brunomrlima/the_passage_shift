@@ -14,8 +14,6 @@ RSpec.describe Availability, type: :model do
   end
 
   describe "Validations" do
-    before { @user = create(:user) }
-
     context "presence" do
       it { should validate_presence_of :day }
       it { should validate_presence_of :hours }
