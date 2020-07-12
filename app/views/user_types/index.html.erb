@@ -18,20 +18,26 @@
       </tr>
       </thead>
       <tbody>
-    <% @users.each_with_index do |user, i| %>
+    <% @admins.each_with_index do |user, i| %>
         <tr>
           <th scope="row"><%= i+1 %></th>
           <td><%= user.full_name %></td>
           <td><%= user.user_types.pluck(:type_name).join(" and ") %></td>
           <td>
-            <% if user.admin? %>
-              <%= link_to "Revoke Admin", revoke_admin_user_types_path(user_id: user.id), class: "btn btn-danger" %>
-            <% else %>
-              <%= link_to "Grant Admin", grant_admin_user_types_path(user_id: user.id), class: "btn btn-secondary" %>
-            <% end %>
+            <%= link_to "Revoke Admin", revoke_admin_user_types_path(user_id: user.id), class: "btn btn-danger" %>
           </td>
         </tr>
     <% end %>
+    <% @regular_users.each_with_index do |user, i| %>
+        <tr>
+          <th scope="row"><%= i+1 %></th>
+          <td><%= user.full_name %></td>
+          <td><%= user.user_types.pluck(:type_name).join(" and ") %></td>
+          <td>
+            <%= link_to "Grant Admin", grant_admin_user_types_path(user_id: user.id), class: "btn btn-secondary" %>
+          </td>
+        </tr>
+      <% end %>
       </tbody>
     </table>
   </div>
