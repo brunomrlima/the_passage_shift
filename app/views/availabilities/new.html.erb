@@ -1,7 +1,17 @@
+<% provide(:title, "Create Availability") %>
+
 <div class="container my-4">
-  <div class="row">
-    <div class="col-12 m-auto p-12 text-center bg-white border border-gray-400 shadow">
-        <%= form_tag availabilities_path do %>
+  <div class="card text-center">
+    <div class="card-header">
+      <%= yield(:title) %>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Tell us when you are willing to work.</h5>
+      <p class="card-text"><b>Important:</b> These are not the days and time that you will be working, but rather the days and time that you are willing to work.</p>
+      <p class="card-text">To confirm work days, you need to access the Work Calendar and confirm your presence.</p>
+      <p class="card-text">You can edit your availabilities at any time.</p>
+
+      <%= form_tag availabilities_path do %>
         <div class="form-row">
           <% @days.each do |day| %>
             <div class="col-lg-3 col-12 mb-5">
@@ -11,8 +21,12 @@
             </div>
           <% end %>
         </div>
-          <%= submit_tag "Save Hours", class: "btn btn-secondary" %>
-        <% end %>
+        <%= submit_tag "Save Hours", class: "btn btn-secondary" %>
+      <% end %>
+    </div>
+
+    <div class="card-footer text-muted">
+      Do you have a question or concern? Send us an email at thepassageshift@gmail.com
     </div>
   </div>
 </div>

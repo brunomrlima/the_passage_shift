@@ -1,18 +1,28 @@
-<div class="container my-4">
-  <div class="row">
-    <div class="col-12 m-auto p-12 text-center bg-white border border-gray-400 shadow">
-      <%= form_tag update_batch_availabilities_path do %>
-        <div class="form-row">
-          <% @days.each do |day| %>
-            <div class="col-lg-3 col-12 mb-5">
-              <b><%= day %></b>
-              <br />
-              <%= select_tag "availabilities[#{day}]", options_for_select(@time_list, (@availabilities.where(day: day).last.hours.split(",") if @availabilities.where(day: day).present?)), {:multiple => true, :id => day, :class => "time_available form-control select2"} %>
-            </div>
-          <% end %>
-        </div>
-        <%= submit_tag "Save Hours", class: "btn btn-secondary" %>
-      <% end %>
-    </div>
+<div class="card text-center">
+  <div class="card-header">
+    <%= yield(:title) %>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Update your availabilities whenever you want.</h5>
+    <p class="card-text"><b>Important:</b> These are not the days and time that you will be working, but rather the days and time that you are willing to work.</p>
+    <p class="card-text">To confirm work days, you need to access the Work Calendar and confirm your presence.</p>
+    <p class="card-text">Keeping this information up to date will help us to send you directional emails to join work days.</p>
+
+    <%= form_tag update_batch_availabilities_path do %>
+      <div class="form-row">
+        <% @days.each do |day| %>
+          <div class="col-lg-3 col-12 mb-5">
+            <b><%= day %></b>
+            <br />
+            <%= select_tag "availabilities[#{day}]", options_for_select(@time_list, (@availabilities.where(day: day).last.hours.split(",") if @availabilities.where(day: day).present?)), {:multiple => true, :id => day, :class => "time_available form-control select2"} %>
+          </div>
+        <% end %>
+      </div>
+      <%= submit_tag "Update Hours", class: "btn btn-secondary" %>
+    <% end %>
+  </div>
+
+  <div class="card-footer text-muted">
+    Do you have a question or concern? Send us an email at thepassageshift@gmail.com
   </div>
 </div>
