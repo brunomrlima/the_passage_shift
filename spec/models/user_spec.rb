@@ -30,4 +30,31 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe "Methods" do
+    context "#create_user_type" do
+      it "expect to create user type after creating user" do
+        expect { create(:user) }.to change { UserType.count }.by(1)
+      end
+
+      it "expect to create user type" do
+        user = create(:user)
+        user_type = user.create_user_type
+        expect(user_type.type_name).to eq("regular")
+      end
+    end
+
+    context "#admin?" do
+      it "sould return false" do
+        user = create(:user)
+        expect(user.admin?).to eq(false)
+      end
+
+      it "sould return true" do
+        user = create(:user)
+        user.user_types.create(type_name: "admin")
+        expect(user.admin?).to eq(true)
+      end
+    end
+  end
 end
