@@ -45,15 +45,22 @@ RSpec.describe User, type: :model do
     end
 
     context "#admin?" do
-      it "sould return false" do
+      it "should return false" do
         user = create(:user)
         expect(user.admin?).to eq(false)
       end
 
-      it "sould return true" do
+      it "should return true" do
         user = create(:user)
         user.user_types.create(type_name: "admin")
         expect(user.admin?).to eq(true)
+      end
+    end
+
+    context "#full_name" do
+      it "should complete name" do
+        user = create(:user)
+        expect(user.full_name).to eq(user.first_name + " " + user.last_name)
       end
     end
   end

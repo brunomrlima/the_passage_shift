@@ -20,4 +20,8 @@ class User < ApplicationRecord
   def admin?
     user_types.pluck(:type_name).include?(UserType::ADMIN)
   end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end
