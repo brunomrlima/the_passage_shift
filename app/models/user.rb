@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :confirmable, :lockable, :trackable
 
   has_many :availabilities
+  has_many :user_types
 
   validates :first_name, presence: true
   validates :last_name, presence: true

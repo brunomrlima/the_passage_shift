@@ -10,6 +10,7 @@ RSpec.describe User, type: :model do
   describe 'Association' do
     context 'has_many' do
       it { should have_many(:availabilities) }
+      it { should have_many(:user_types) }
     end
   end
 
