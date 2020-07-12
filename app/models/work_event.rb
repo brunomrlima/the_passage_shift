@@ -1,0 +1,2 @@
+class WorkEvent < ApplicationRecord
+end

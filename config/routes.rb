@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'work_events/index'
   devise_for :users
   authenticated :user do
     devise_scope :user do
