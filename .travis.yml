@@ -9,8 +9,8 @@ jobs:
   - stage: test
     name: Test
     script:
-    - bundle exec rake webpacker:compile RAILS_ENV=test
     - bundle exec rake db:setup RAILS_ENV=test
+    - bundle exec rake webpacker:compile RAILS_ENV=test
     - bundle exec rake spec RAILS_ENV=test
 stages:
 - name: test
