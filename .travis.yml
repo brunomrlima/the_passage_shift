@@ -5,6 +5,7 @@ rvm:
 services:
 - postgresql
 before_script:
+  - yarn config set ignore-engines true
   - bin/yarn
 jobs:
   include:
