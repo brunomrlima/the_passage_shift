@@ -5,14 +5,14 @@ rvm:
 services:
 - postgresql
 before_script:
-#  - bin/yarn
+  - bin/yarn
 jobs:
   include:
   - stage: test
     name: Test
     script:
     - bundle exec rake db:setup RAILS_ENV=test
-#    - bundle exec rails webpacker:compile RAILS_ENV=test
+    - bundle exec rails webpacker:compile RAILS_ENV=test
     - bundle exec rake spec RAILS_ENV=test
 stages:
 - name: test
