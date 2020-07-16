@@ -10,6 +10,7 @@
     <p class="card-text">Volunteer to help feed London’s homeless.</p>
 
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <%= f.hidden_field :reset_password_token %>
 
       <div class="form-group col-lg-4 col-md-6 mx-auto">
         <%= f.password_field :password, autocomplete: "new-password", placeholder: "New password (#{@minimum_password_length} characters minimum)", class: "form-control", autofocus: true %>
