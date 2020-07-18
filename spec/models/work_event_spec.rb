@@ -6,4 +6,11 @@ RSpec.describe WorkEvent, type: :model do
       expect(build(:work_event)).to be_valid
     end
   end
+
+  describe 'Association' do
+    context 'has_many' do
+      it { should have_many(:user_events) }
+      it { should have_many(:users) }
+    end
+  end
 end

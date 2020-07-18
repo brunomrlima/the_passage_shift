@@ -5,8 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :trackable
 
-  has_many :availabilities
-  has_many :user_types
+  has_many :availabilities, dependent: :destroy
+  has_many :user_types, dependent: :destroy
+  has_many :user_events, dependent: :destroy
+  has_many :work_events, through: :user_events
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :gender, presence: true
