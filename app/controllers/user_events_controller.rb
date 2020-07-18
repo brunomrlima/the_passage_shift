@@ -1,6 +1,6 @@
 class UserEventsController < ApplicationController
   before_action :authenticate_user!
-  before_action :admin_access
+  before_action :destroy_access, only: :destroy
 
   def create
     @user_event = UserEvent.new(user_event_params)
@@ -13,16 +13,26 @@ class UserEventsController < ApplicationController
     redirect_to work_events_path
   end
 
+  def destroy
+    if @user_event.destroy
+      flash[:notice] = 'User removed successfully.'
+    else
+      flash[:alert] = 'Something went wrong please try again or contact the IT team.'
+    end
+    redirect_to work_events_path
+  end
+
   private
 
     def user_event_params
       params.require(:user_event).permit(:work_event_id)
     end
 
-    def admin_access
-      unless current_user.admin?
-        flash[:alert] = "You can't access this area."
-        redirect_to root_path
+    def destroy_access
+      @user_event = UserEvent.find(params[:id])
+      unless current_user.admin? || @user_event.user.eql?(current_user)
+        flash[:alert] = "You can't do this action."
+        redirect_to work_events_path
       end
     end
 end

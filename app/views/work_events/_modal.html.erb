@@ -20,7 +20,7 @@
         <%= link_to 'Join Work Event', user_events_path(user_event: { work_event_id: work_event.id }) , class: "btn btn-secondary", method: :post %>
       <% end %>
     </div>
-    <%= link_to 'Delete', work_event_path(work_event), method: :delete, action: :destroy,
+    <%= link_to 'Delete Event', work_event_path(work_event), method: :delete, action: :destroy,
                 data: { confirm: 'Are you sure? Deleting a work event will delete ALL its user events.' }, class: "btn btn-danger float-right my-3" if current_user.admin? %>
   </div>
   <div class="modal-footer">
@@ -29,6 +29,8 @@
       <% if work_event.users.present? %>
         <% work_event.users.each do |user| %>
           <b> <%= user.full_name %> </b>
+          <%= link_to 'Remove', user_event_path(work_event.user_events.where(user: user).last), method: :delete, action: :destroy,
+                      data: { confirm: 'Are you sure? This will remove this helper to this activity.' }, class: "text-danger" if current_user.admin? || user.eql?(current_user) %>
           <br />
         <% end %>
       <% else %>
