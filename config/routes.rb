@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+  get 'static_pages/home'
   get 'work_events/index'
   devise_for :users
   authenticated :user do
     devise_scope :user do
-      root to: 'availabilities#index', as: :authenticated_root
+      root to: 'static_pages#home', as: :authenticated_root
     end
   end
   devise_scope :user do
