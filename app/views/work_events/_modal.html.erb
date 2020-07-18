@@ -5,16 +5,27 @@
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
   </div>
   <div class="modal-body">
-    <h5 class="modal-title">Level: <%= work_event.start_time %>  <%= work_event.end_time %></h5>
+    <div class="text-center">
+      <h5 class="modal-title"><%= work_event.start_time.strftime("%Y/%m/%d") %> to <%= work_event.end_time.strftime("%Y/%m/%d") %></h5>
+      <h5 class="modal-title"><%= work_event.start_time.strftime("%H:%M") %> to <%= work_event.end_time.strftime("%H:%M") %></h5>
+    </div>
     <div class="jumbotron text-center text-wrap" style="word-break: break-word">
       <%= raw(work_event.description) %>
+    </div>
+    <div class="text-center">
+      <%= link_to 'Join Work Event', user_events_path(user_event: { work_event_id: work_event.id }) , class: "btn btn-secondary", method: :post %>
     </div>
   </div>
   <div class="modal-footer">
     <div class="mx-auto">
-      <% work_event.users.each do |user| %>
-        <%= user.full_name %>
-        <br />
+      Workers assigned: <br />
+      <% if work_event.users.present? %>
+        <% work_event.users.each do |user| %>
+          <%= user.full_name %>
+          <br />
+        <% end %>
+      <% else %>
+        None
       <% end %>
     </div>
   </div>

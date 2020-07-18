@@ -25,4 +25,6 @@ Rails.application.routes.draw do
       get :open_modal
     end
   end
+
+  resources :user_events, only: [:create]
 end
