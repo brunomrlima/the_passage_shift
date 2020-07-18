@@ -1,4 +1,7 @@
 class UserEventsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :admin_access
+
   def create
     @user_event = UserEvent.new(user_event_params)
     @user_event.user = current_user
@@ -14,5 +17,12 @@ class UserEventsController < ApplicationController
 
     def user_event_params
       params.require(:user_event).permit(:work_event_id)
+    end
+
+    def admin_access
+      unless current_user.admin?
+        flash[:alert] = "You can't access this area."
+        redirect_to root_path
+      end
     end
 end
