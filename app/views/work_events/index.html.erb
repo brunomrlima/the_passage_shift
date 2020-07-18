@@ -1,3 +1,5 @@
+<% provide(:title, "Work Events") %>
+
 <div class="container">
   <%= month_calendar events: @work_events do |date, meetings| %>
     <%= date.day %>
@@ -9,3 +11,7 @@
     <% end %>
   <% end %>
 </div>
+
+<% if current_user.admin? %>
+  <%= render 'new' %>
+<% end %>
