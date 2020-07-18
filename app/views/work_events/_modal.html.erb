@@ -14,8 +14,14 @@
       <%= raw(work_event.description) %>
     </div>
     <div class="text-center">
-      <%= link_to 'Join Work Event', user_events_path(user_event: { work_event_id: work_event.id }) , class: "btn btn-secondary", method: :post %>
+      <% if work_event.users.include?(current_user)%>
+        <%= link_to 'Joined', '#', class: "disabled btn btn-success" %>
+      <% else %>
+        <%= link_to 'Join Work Event', user_events_path(user_event: { work_event_id: work_event.id }) , class: "btn btn-secondary", method: :post %>
+      <% end %>
     </div>
+    <%= link_to 'Delete', work_event_path(work_event), method: :delete, action: :destroy,
+                data: { confirm: 'Are you sure? Deleting a work event will delete ALL its user events.' }, class: "btn btn-danger float-right my-3" if current_user.admin? %>
   </div>
   <div class="modal-footer">
     <div class="mx-auto">

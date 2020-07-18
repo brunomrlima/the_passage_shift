@@ -1,15 +1,12 @@
 class AvailabilitiesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_days_and_times, only: [:index, :new]
 
   def index
-    @days = Date::DAYNAMES
-    @time_list = (7..22).inject([]) {|arr, n| arr << "#{format('%02d', n)}:00-#{format('%02d', n+1)}:00"}
     @availabilities = current_user.availabilities
   end
 
   def new
-    @days = Date::DAYNAMES
-    @time_list = (7..22).inject([]) {|arr, n| arr << "#{format('%02d', n)}:00-#{format('%02d', n+1)}:00"}
   end
 
   def create
@@ -35,4 +32,11 @@ class AvailabilitiesController < ApplicationController
     flash[:notice] = "Hours updated!"
     redirect_to availabilities_path
   end
+
+  private
+
+    def set_days_and_times
+      @days ||= Date::DAYNAMES
+      @time_list ||= (7..22).inject([]) {|arr, n| arr << "#{format('%02d', n)}:00-#{format('%02d', n+1)}:00"}
+    end
 end

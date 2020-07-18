@@ -1,6 +1,7 @@
 class WorkEventsController < ApplicationController
   before_action :authenticate_user!
-  before_action :admin_access, only: [:create, :update, :edit]
+  before_action :admin_access, only: [:create, :update, :edit, :destroy]
+  before_action :set_work_event, only: [:edit, :update, :destroy]
 
   def index
     @work_events = WorkEvent.all
@@ -18,13 +19,20 @@ class WorkEventsController < ApplicationController
   end
 
   def edit
-    @work_event = WorkEvent.find(params[:id])
   end
 
   def update
-    @work_event = WorkEvent.find(params[:id])
     if @work_event.update(work_event_params)
       flash[:notice] = 'Work event successfully updated.'
+    else
+      flash[:alert] = 'Something went wrong please try again or contact the IT team.'
+    end
+    redirect_to work_events_path
+  end
+
+  def destroy
+    if @work_event.destroy
+      flash[:notice] = 'Work event successfully destroyed.'
     else
       flash[:alert] = 'Something went wrong please try again or contact the IT team.'
     end
@@ -49,5 +57,9 @@ class WorkEventsController < ApplicationController
         flash[:alert] = "You can't access this area."
         redirect_to root_path
       end
+    end
+
+    def set_work_event
+      @work_event = WorkEvent.find(params[:id])
     end
 end
