@@ -14,6 +14,20 @@ class WorkEventsController < ApplicationController
     redirect_to work_events_path
   end
 
+  def edit
+    @work_event = WorkEvent.find(params[:id])
+  end
+
+  def update
+    @work_event = WorkEvent.find(params[:id])
+    if @work_event.update(work_event_params)
+      flash[:notice] = 'Work event successfully updated.'
+    else
+      flash[:alert] = 'Something went wrong please try again or contact the IT team.'
+    end
+    redirect_to work_events_path
+  end
+
   private
 
     def work_event_params

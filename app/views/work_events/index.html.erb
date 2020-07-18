@@ -1,15 +1,22 @@
 <% provide(:title, "Work Events") %>
 
-<div class="container">
-  <%= month_calendar events: @work_events do |date, work_events| %>
-    <%= date.day %>
-
-    <% work_events.each do |work_event| %>
-      <div>
-        <%= work_event.title %>
-      </div>
-    <% end %>
-  <% end %>
+<div class="card text-center">
+  <div class="card-header">
+    Work Events
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Select an event that you can work with us.</h5>
+    <div class="container">
+      <%= month_calendar events: @work_events do |date, work_events| %>
+        <%= date.day %>
+        <% work_events.each do |work_event| %>
+          <div>
+            <%= link_to "#{work_event.start_time.strftime("%H:%M")} - #{work_event.end_time.strftime("%H:%M")} #{work_event.title}", edit_work_event_path(work_event) %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 <% if current_user.admin? %>
