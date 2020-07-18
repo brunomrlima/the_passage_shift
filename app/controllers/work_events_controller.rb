@@ -1,4 +1,6 @@
 class WorkEventsController < ApplicationController
+  before_action :admin_access, only: [:create, :update, :edit]
+
   def index
     @work_events = WorkEvent.all
     @work_event = WorkEvent.new if current_user.admin?
@@ -39,5 +41,12 @@ class WorkEventsController < ApplicationController
 
     def work_event_params
       params.require(:work_event).permit(:title, :description, :start_time, :end_time)
+    end
+
+    def admin_access
+      unless current_user.admin?
+        flash[:alert] = "You can't access this area."
+        redirect_to root_path
+      end
     end
 end

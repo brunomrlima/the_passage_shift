@@ -1,6 +1,7 @@
 <!-- Modal-->
 <div class="modal-content">
   <div class="modal-header">
+    <%= link_to 'Edit', edit_work_event_path(work_event), class: "btn btn-primary" if current_user.admin? %>
     <h5 class="modal-title"><%= work_event.title %></h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
   </div>
@@ -21,7 +22,7 @@
       Workers assigned: <br />
       <% if work_event.users.present? %>
         <% work_event.users.each do |user| %>
-          <%= user.full_name %>
+          <b> <%= user.full_name %> </b>
           <br />
         <% end %>
       <% else %>
