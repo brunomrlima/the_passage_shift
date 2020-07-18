@@ -1,12 +1,12 @@
 <% provide(:title, "Work Events") %>
 
 <div class="container">
-  <%= month_calendar events: @work_events do |date, meetings| %>
+  <%= month_calendar events: @work_events do |date, work_events| %>
     <%= date.day %>
 
-    <% meetings.each do |meeting| %>
+    <% work_events.each do |work_event| %>
       <div>
-        <%= meeting.name %>
+        <%= work_event.title %>
       </div>
     <% end %>
   <% end %>

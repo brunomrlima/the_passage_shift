@@ -20,5 +20,5 @@ Rails.application.routes.draw do
       get :revoke_admin
     end
   end
-  resources :work_events, only: [:index]
+  resources :work_events, only: [:index, :create]
 end
