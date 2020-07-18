@@ -1,6 +1,6 @@
 class WorkEventsController < ApplicationController
   before_action :authenticate_user!
-  before_action :admin_access, only: [:create, :update, :edit]
+  before_action :admin_access, only: [:create, :update, :edit, :destroy]
   before_action :set_work_event, only: [:edit, :update, :destroy]
 
   def index
