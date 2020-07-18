@@ -1,2 +1,11 @@
-<h1>WorkEvents#index</h1>
-<p>Find me in app/views/work_events/index.html.erb</p>
+<div class="container">
+  <%= month_calendar events: @work_events do |date, meetings| %>
+    <%= date.day %>
+
+    <% meetings.each do |meeting| %>
+      <div>
+        <%= meeting.name %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
