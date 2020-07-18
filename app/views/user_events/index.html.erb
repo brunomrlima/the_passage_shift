@@ -1,0 +1,32 @@
+<% provide(:title, "Work Events") %>
+
+<div class="card text-center">
+  <div class="card-header">
+    Your Work Events
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">This calendar only includes work events that you helped or are going to help.</h5>
+    <div class="container">
+      <%= month_calendar events: @user_events do |date, work_events| %>
+        <div class="float-left">
+          <%= date.day %>
+        </div>
+        <br />
+        <% work_events.each do |work_event| %>
+          <a data-toggle="modal" data-target="#modal-window" data-remote="true" href="<%= open_modal_work_events_path(id: work_event.id) %>">
+            <%= "#{work_event.start_time.strftime("%H:%M")}-#{work_event.end_time.strftime("%H:%M")}" %>
+            <br />
+            <%= work_event.title%>
+          </a>
+          <br />
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>

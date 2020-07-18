@@ -2,6 +2,10 @@ class UserEventsController < ApplicationController
   before_action :authenticate_user!
   before_action :destroy_access, only: :destroy
 
+  def index
+    @user_events = current_user.work_events
+  end
+
   def create
     @user_event = UserEvent.new(user_event_params)
     @user_event.user = current_user

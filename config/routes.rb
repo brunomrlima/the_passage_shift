@@ -27,5 +27,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :user_events, only: [:create, :destroy]
+  resources :user_events, only: [:index, :create, :destroy]
 end
