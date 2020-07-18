@@ -8,11 +8,17 @@
     <h5 class="card-title">Select an event that you can work with us.</h5>
     <div class="container">
       <%= month_calendar events: @work_events do |date, work_events| %>
-        <%= date.day %>
+        <div class="float-left">
+          <%= date.day %>
+        </div>
+        <br />
         <% work_events.each do |work_event| %>
           <a data-toggle="modal" data-target="#modal-window" data-remote="true" href="<%= open_modal_work_events_path(id: work_event.id) %>">
-            <%= "#{work_event.start_time.strftime("%H:%M")} - #{work_event.end_time.strftime("%H:%M")} #{work_event.title}" %>
+            <%= "#{work_event.start_time.strftime("%H:%M")}-#{work_event.end_time.strftime("%H:%M")}" %>
+            <br />
+            <%= work_event.title%>
           </a>
+          <br />
         <% end %>
       <% end %>
     </div>
