@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "UserTypes", type: :request do
+RSpec.describe "WorkEvents", type: :request do
   describe "GET /index" do
     before(:context) do
       admin = FactoryBot.create(:admin_user)
@@ -9,7 +9,7 @@ RSpec.describe "UserTypes", type: :request do
     end
 
     it "returns http success" do
-      get "/user_types"
+      get "/work_events"
       expect(response).to have_http_status(:success)
     end
   end

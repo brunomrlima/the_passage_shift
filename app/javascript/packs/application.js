@@ -12,6 +12,7 @@ require("packs/availabilities")
 import "bootstrap"
 import "../stylesheets/application"
 import $ from 'jquery'
+global.$ = jQuery;
 import 'select2'
 import 'select2/dist/css/select2.css'
 

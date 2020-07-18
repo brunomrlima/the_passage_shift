@@ -11,6 +11,20 @@ RSpec.describe User, type: :model do
     context 'has_many' do
       it { should have_many(:availabilities) }
       it { should have_many(:user_types) }
+      it { should have_many(:user_events) }
+      it { should have_many(:work_events) }
+      it 'dependent destroy: should destroy availabilities if destroyed' do
+        user = create(:user_with_availabilities)
+        expect { user.destroy }.to change { Availability.count }.by(-user.availabilities.count)
+      end
+      it 'dependent destroy: should destroy user types if destroyed' do
+        user = create(:admin_user)
+        expect { user.destroy }.to change { UserType.count }.by(-user.user_types.count)
+      end
+      it 'dependent destroy: should destroy user types if destroyed' do
+        user = create(:user_with_user_events)
+        expect { user.destroy }.to change { UserEvent.count }.by(-user.user_events.count)
+      end
     end
   end
 

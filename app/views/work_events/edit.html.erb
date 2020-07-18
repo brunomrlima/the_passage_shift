@@ -1,0 +1,31 @@
+<div class="card text-center">
+  <div class="card-header">
+    Create new work events
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Users will be able to join the work events.</h5>
+    <p class="card-text">You are an admin and that's why you can create new events.</p>
+    <div class="container">
+      <%= form_for @work_event do |f| %>
+        <div class="form-group">
+          <%= f.label :title, "Title*" %>
+          <%= f.text_field :title, placeholder: "Work Title...", class: 'form-control', required: true %>
+          <br />
+          <%= f.label :description, "Description*" %>
+          <%= f.text_area :description, placeholder: "Work Description", class: 'form-control', required: true %>
+          <br />
+          <%= f.label :start_time %>
+          <%= f.datetime_select :start_time, required: true %>
+          <br />
+          <%= f.label :end_time %>
+          <%= f.datetime_select :end_time, required: true %>
+        </div>
+        <%= f.submit "Update Work Event", class: "btn btn-secondary" %>
+      <% end %>
+
+    </div>
+  </div>
+  <div class="card-footer text-muted">
+    Do you have a question or concern? Send us an email at thepassageshift@gmail.com
+  </div>
+</div>

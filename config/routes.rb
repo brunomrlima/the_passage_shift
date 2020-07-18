@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'work_events/index'
   devise_for :users
   authenticated :user do
     devise_scope :user do
@@ -19,4 +20,11 @@ Rails.application.routes.draw do
       get :revoke_admin
     end
   end
+  resources :work_events, only: [:index, :create, :edit, :update] do
+    collection do
+      get :open_modal
+    end
+  end
+
+  resources :user_events, only: [:create]
 end
