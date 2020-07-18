@@ -10,9 +10,10 @@
       <%= month_calendar events: @work_events do |date, work_events| %>
         <%= date.day %>
         <% work_events.each do |work_event| %>
-          <div>
-            <%= link_to "#{work_event.start_time.strftime("%H:%M")} - #{work_event.end_time.strftime("%H:%M")} #{work_event.title}", edit_work_event_path(work_event) %>
-          </div>
+          <a data-toggle="modal" data-target="#modal-window" data-remote="true" href="<%= open_modal_work_events_path(id: work_event.id) %>">
+            <%= "#{work_event.start_time.strftime("%H:%M")} - #{work_event.end_time.strftime("%H:%M")} #{work_event.title}" %>
+          </a>
+          <%#= link_to "#{work_event.start_time.strftime("%H:%M")} - #{work_event.end_time.strftime("%H:%M")} #{work_event.title}", edit_work_event_path(work_event) %>
         <% end %>
       <% end %>
     </div>
@@ -22,3 +23,9 @@
 <% if current_user.admin? %>
   <%= render 'new' %>
 <% end %>
+
+<div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>

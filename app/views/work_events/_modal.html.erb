@@ -1,0 +1,21 @@
+<!-- Modal-->
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title"><%= work_event.title %></h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
+  </div>
+  <div class="modal-body">
+    <h5 class="modal-title">Level: <%= work_event.start_time %>  <%= work_event.end_time %></h5>
+    <div class="jumbotron text-center text-wrap" style="word-break: break-word">
+      <%= raw(work_event.description) %>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="mx-auto">
+      <% work_event.users.each do |user| %>
+        <%= user.full_name %>
+        <br />
+      <% end %>
+    </div>
+  </div>
+</div>

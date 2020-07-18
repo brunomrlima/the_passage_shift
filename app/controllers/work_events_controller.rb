@@ -28,6 +28,13 @@ class WorkEventsController < ApplicationController
     redirect_to work_events_path
   end
 
+  def open_modal
+    @work_event_modal = WorkEvent.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
     def work_event_params

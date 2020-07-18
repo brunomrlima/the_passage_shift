@@ -20,5 +20,9 @@ Rails.application.routes.draw do
       get :revoke_admin
     end
   end
-  resources :work_events, only: [:index, :create, :edit, :update]
+  resources :work_events, only: [:index, :create, :edit, :update] do
+    collection do
+      get :open_modal
+    end
+  end
 end
