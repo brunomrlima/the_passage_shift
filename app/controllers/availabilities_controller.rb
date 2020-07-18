@@ -1,4 +1,6 @@
 class AvailabilitiesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @days = Date::DAYNAMES
     @time_list = (7..22).inject([]) {|arr, n| arr << "#{format('%02d', n)}:00-#{format('%02d', n+1)}:00"}
