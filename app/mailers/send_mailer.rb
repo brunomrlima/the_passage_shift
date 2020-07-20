@@ -1,4 +1,4 @@
-class SenderMailer < ApplicationMailer
+class SendMailer < ApplicationMailer
   def joined_work_event(user_id, work_event_id)
     @user = User.find(user_id)
     @work_event = WorkEvent.find(work_event_id)
