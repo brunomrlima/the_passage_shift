@@ -10,6 +10,7 @@ class UserEventsController < ApplicationController
     @user_event = UserEvent.new(user_event_params)
     @user_event.user = current_user
     if @user_event.save
+      SenderMailer.joined_work_event(@user_event.user.id, @user_event.work_event).deliver_now
       flash[:notice] = 'You sucessfully joined our work event.'
     else
       flash[:alert] = 'Something went wrong please try again or contact the IT team.'
