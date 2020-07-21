@@ -9,6 +9,8 @@
     <div class="text-center">
       <h5 class="modal-title"><%= work_event.start_time.strftime("%Y/%m/%d") %> to <%= work_event.end_time.strftime("%Y/%m/%d") %></h5>
       <h5 class="modal-title"><%= work_event.start_time.strftime("%H:%M") %> to <%= work_event.end_time.strftime("%H:%M") %></h5>
+      <% helpers = work_event.helpers_needed  %>
+      <h5 class="modal-title">This Event needs <%= helpers.present? ? helpers : "as many as possible" %> workers.</h5>
     </div>
     <div class="jumbotron text-center text-wrap" style="word-break: break-word">
       <%= raw(work_event.description) %>
@@ -25,7 +27,7 @@
   </div>
   <div class="modal-footer">
     <div class="mx-auto">
-      Workers assigned: <br />
+      Workers assigned (<%= work_event.users.count %> of <%= helpers.present? ? helpers : "&infin;".html_safe %>): <br />
       <% if work_event.users.present? %>
         <% work_event.users.each do |user| %>
           <b> <%= user.full_name %> </b>
