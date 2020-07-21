@@ -1,0 +1,27 @@
+<div class="container mx-auto">
+  <div class="card text-center">
+    <div class="card-header">
+      <h4>Hello, <%= @user.first_name %></h4>
+    </div>
+    <div class="card-body text-center">
+      <h5 class="card-title">You are receiving this email because you committed yourself to help in one of our work events.</h5>
+      Some more information bellow:
+      <div class="card">
+        <div class="text-center">
+          <h4 class="text-center"><%= @work_event.title %></h4>
+          Working day: <b><%= @work_event.start_time.strftime("%d %b, %Y") %></b> <br />
+          Working hours: <b><%= @work_event.start_time.strftime("%H:%M") %> to <%= @work_event.end_time.strftime("%H:%M") %></b>
+          <div class="jumbotron">
+            <%= @work_event.description %>
+          </div>
+          You can access the work event <%= link_to 'HERE', work_events_url %>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      Have a nice day,
+      <br />
+      The Passage Shift Team
+    </div>
+  </div>
+</div>
