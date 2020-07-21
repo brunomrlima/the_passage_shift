@@ -49,7 +49,7 @@ class WorkEventsController < ApplicationController
   private
 
     def work_event_params
-      params.require(:work_event).permit(:title, :description, :start_time, :end_time)
+      params.require(:work_event).permit(:title, :description, :start_time, :end_time, :helpers_needed)
     end
 
     def admin_access
