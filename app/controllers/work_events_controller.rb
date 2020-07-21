@@ -1,7 +1,7 @@
 class WorkEventsController < ApplicationController
   before_action :authenticate_user!
   before_action :admin_access, only: [:create, :update, :edit, :destroy]
-  before_action :set_work_event, only: [:edit, :update, :destroy]
+  before_action :set_work_event, only: [:edit, :update, :destroy, :show]
 
   def index
     @work_events = WorkEvent.all
@@ -19,6 +19,9 @@ class WorkEventsController < ApplicationController
   end
 
   def edit
+  end
+
+  def show
   end
 
   def update

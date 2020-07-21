@@ -1,0 +1,46 @@
+<% provide(:title, @work_event.title) %>
+<% helpers = @work_event.helpers_needed %>
+
+<div class="card text-center">
+  <div class="card-header">
+    Work Event
+  </div>
+  <%= link_to 'Edit', edit_work_event_path(@work_event), class: "btn btn-outline-info float-right" if current_user.admin? %>
+  <div class="card-body">
+    <h5 class="card-title"><%= @work_event.title %>.</h5>
+    <p class="card-text">You are an admin and that's why you can create new events.</p>
+    <div class="container">
+      <h5>This Event needs <%= helpers.present? ? helpers : "as many as possible" %> workers.</h5>
+      <h5><%= @work_event.start_time.strftime("%Y/%m/%d") %></h5>
+      <h5><%= @work_event.start_time.strftime("%H:%M") %> to <%= @work_event.end_time.strftime("%H:%M") %></h5>
+      <div class="jumbotron text-center text-wrap" style="word-break: break-word">
+        <%= raw(@work_event.description) %>
+      </div>
+      <div class="mb-3">
+        <% if @work_event.users.include?(current_user)%>
+          <%= link_to 'You Already Joined', '#', class: "disabled btn btn-success" %>
+        <% else %>
+          <%= link_to 'Join Work Event', user_events_path(user_event: { work_event_id: @work_event.id }) , class: "btn btn-secondary", method: :post %>
+        <% end %>
+      </div>
+      <div class="mx-auto">
+        Workers assigned (<%= @work_event.users.count %> of <%= helpers.present? ? helpers : "&infin;".html_safe %>): <br />
+        <% if @work_event.users.present? %>
+          <% @work_event.users.each do |user| %>
+            <b> <%= user.full_name %> </b>
+            <%= link_to 'Remove', user_event_path(@work_event.user_events.where(user: user).last), method: :delete, action: :destroy,
+                        data: { confirm: 'Are you sure? This will remove this helper to this activity.' }, class: "text-danger" if current_user.admin? || user.eql?(current_user) %>
+            <br />
+          <% end %>
+        <% else %>
+          None
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <%= link_to 'Delete Event', work_event_path(@work_event), method: :delete, action: :destroy,
+              data: { confirm: 'Are you sure? Deleting a work event will delete ALL its user events.' }, class: "btn btn-outline-danger" if current_user.admin? %>
+  <div class="card-footer text-muted">
+    Do you have a question or concern? Send us an email at thepassageshift@gmail.com
+  </div>
+</div>
