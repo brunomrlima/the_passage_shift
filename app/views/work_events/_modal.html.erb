@@ -1,7 +1,7 @@
 <!-- Modal-->
+<%= link_to 'Edit', edit_work_event_path(work_event), class: "btn btn-outline-info" if current_user.admin? %>
 <div class="modal-content">
   <div class="modal-header">
-    <%= link_to 'Edit', edit_work_event_path(work_event), class: "btn btn-primary" if current_user.admin? %>
     <h5 class="modal-title"><%= work_event.title %></h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
   </div>
@@ -21,11 +21,10 @@
       <% else %>
         <%= link_to 'Join Work Event', user_events_path(user_event: { work_event_id: work_event.id }) , class: "btn btn-secondary", method: :post %>
       <% end %>
+      <%= link_to 'Show', work_event_path(work_event), class: "btn btn-primary" %>
     </div>
-    <%= link_to 'Delete Event', work_event_path(work_event), method: :delete, action: :destroy,
-                data: { confirm: 'Are you sure? Deleting a work event will delete ALL its user events.' }, class: "btn btn-danger float-right my-3" if current_user.admin? %>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer mb-5">
     <div class="mx-auto">
       Workers assigned (<%= work_event.users.count %> of <%= helpers.present? ? helpers : "&infin;".html_safe %>): <br />
       <% if work_event.users.present? %>
@@ -41,3 +40,5 @@
     </div>
   </div>
 </div>
+<%= link_to 'Delete Event', work_event_path(work_event), method: :delete, action: :destroy,
+            data: { confirm: 'Are you sure? Deleting a work event will delete ALL its user events.' }, class: "btn btn-outline-danger" if current_user.admin? %>

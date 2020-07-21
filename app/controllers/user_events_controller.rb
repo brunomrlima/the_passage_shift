@@ -12,10 +12,11 @@ class UserEventsController < ApplicationController
     if @user_event.save
       SendMailer.joined_work_event(@user_event.user.id, @user_event.work_event.id).deliver_now
       flash[:notice] = 'You sucessfully joined our work event.'
+      redirect_to work_event_path @user_event.work_event
     else
       flash[:alert] = 'Something went wrong please try again or contact the IT team.'
+      redirect_to work_events_path
     end
-    redirect_to work_events_path
   end
 
   def destroy
