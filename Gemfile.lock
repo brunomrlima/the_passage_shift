@@ -62,17 +62,10 @@ GEM
     bindex (0.8.1)
     bootsnap (1.4.6)
       msgpack (~> 1.0)
-    bootstrap-email (0.3.2)
-      actionmailer (>= 3)
-      nokogiri (~> 1.6)
-      premailer-rails (~> 1.9)
-      rails (>= 3)
     builder (3.2.4)
     byebug (11.1.3)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
-    css_parser (1.7.1)
-      addressable
     devise (4.7.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -92,7 +85,6 @@ GEM
     ffi (1.13.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    htmlentities (4.3.4)
     i18n (1.8.3)
       concurrent-ruby (~> 1.0)
     jbuilder (2.10.0)
@@ -122,13 +114,6 @@ GEM
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     pg (1.2.3)
-    premailer (1.12.1)
-      addressable
-      css_parser (>= 1.6.0)
-      htmlentities (>= 4.0.0)
-    premailer-rails (1.11.1)
-      actionmailer (>= 3)
-      premailer (~> 1.7, >= 1.7.9)
     public_suffix (4.0.5)
     puma (4.3.5)
       nio4r (~> 2.0)
@@ -246,7 +231,6 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.4.2)
-  bootstrap-email
   byebug
   devise
   factory_bot_rails
