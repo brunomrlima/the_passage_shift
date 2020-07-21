@@ -20,6 +20,7 @@ class UserEventsController < ApplicationController
 
   def destroy
     if @user_event.destroy
+      SendMailer.removed_work_event(@user_event.user.id, @user_event.work_event.id).deliver_now
       flash[:notice] = 'User removed successfully.'
     else
       flash[:alert] = 'Something went wrong please try again or contact the IT team.'
