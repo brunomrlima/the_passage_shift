@@ -1,0 +1,26 @@
+<div class="container mx-auto bg-light">
+  <div class="card text-white bg-secondary" style="margin-top: 15px;">
+    <div class="container">
+      <div class="card-header">Hello, <%= @user.first_name %></div>
+    </div>
+    <div class="card-body">
+      <h5 class="card-text text-center">You are receiving this email because you were <b style="color: red;">REMOVED</b> in one of our work events.</h5>
+      <p class="card-text text-center">Some more information bellow:</p>
+      <div class="card bg-dark" style="margin: 15px;">
+        <div class="text-center">
+          <h4 class="text-center text-warning">Work event title: <%= @work_event.title %></h4>
+          Working day: <%= @work_event.start_time.strftime("%d %b, %Y") %> <br />
+          Working hours: Work event hours:<%= @work_event.start_time.strftime("%H:%M") %> to <%= @work_event.end_time.strftime("%H:%M") %> <br />
+          You <b style="color: red;">DO NOT</b> need to work at this work event. <br />
+          If you are interested in other work events, please access: <br />
+          <%= link_to 'Work Events', work_events_url, class: 'btn btn-secondary' %>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer" style="margin: 15px;">
+      Have a nice day,
+      <br />
+      ~The Passage Shift Team
+    </div>
+  </div>
+</div>
