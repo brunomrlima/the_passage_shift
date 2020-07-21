@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
 gem "select2-rails"
 gem "simple_calendar", "~> 2.0"
+gem 'bootstrap-email'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
