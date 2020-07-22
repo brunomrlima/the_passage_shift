@@ -14,6 +14,9 @@
     </ul>
     <ul class="navbar-nav ml-auto pr-5">
       <% if user_signed_in? %>
+        <li class="nav-item m-3">
+          <%= link_to 'Daily Summary', daily_summary_work_events_path, class: 'nav-link' %>
+        </li>
         <li class="nav-item dropdown m-3">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Work Events
