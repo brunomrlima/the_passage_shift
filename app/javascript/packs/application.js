@@ -8,6 +8,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("packs/availabilities")
+require("packs/work_events")
 
 import "bootstrap"
 import "../stylesheets/application"
