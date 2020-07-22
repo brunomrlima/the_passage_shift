@@ -49,6 +49,10 @@ class WorkEventsController < ApplicationController
     end
   end
 
+  def daily_summary
+    @work_events = WorkEvent.where({start_time: Time.now.beginning_of_day..Time.now.end_of_day})
+  end
+
   private
 
     def work_event_params

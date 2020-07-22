@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resources :work_events do
     collection do
       get :open_modal
+      get :daily_summary
     end
   end
 

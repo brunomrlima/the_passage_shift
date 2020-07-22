@@ -1,0 +1,54 @@
+<% provide(:title, "Daily Summary") %>
+
+<div class="card text-center">
+  <div class="card-header">
+    This is the summary of <%= Time.now.strftime("%b %d, %Y") %>
+  </div>
+  <% if @work_events.present? %>
+      <table class="table table-striped table-dark table-responsive-sm">
+        <thead>
+        <tr>
+          <th scope="col">Time</th>
+          <th scope="col">Event</th>
+          <th scope="col">Workers Attending/Needed</th>
+          <th scope="col">Helpers</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @work_events.each do |work_event| %>
+          <% helpers = work_event.helpers_needed %>
+          <tr>
+            <th><%= work_event.start_time.strftime("%H:%M") %> to <%= work_event.end_time.strftime("%H:%M") %></th>
+            <td><%= link_to work_event.title, work_event_path(work_event) %></td>
+            <td><%= work_event.users.count %> of <%= helpers.present? ? helpers : "&infin;".html_safe %></td>
+            <td>
+              <div class="text-wrap">
+                <% work_event.users.each do |user| %>
+                  <%= link_to user.full_name, profile_path(user) %> (<%= user.phone %>) <br />
+                <% end %>
+              </div>
+            </td>
+            <td>
+              <% if current_user.work_events.include?(work_event) %>
+                <%= link_to 'Joined', '#', class: "disabled btn btn-success" %>
+              <% else %>
+                <%= link_to 'Join', user_events_path(user_event: { work_event_id: work_event.id }) , class: "btn btn-secondary", method: :post %>
+              <% end %>
+              <%= link_to "Edit", edit_work_event_path(work_event), class: "btn btn-primary" if current_user.admin? %>
+              <%= link_to 'Delete', work_event_path(work_event), method: :delete, action: :destroy,
+            data: { confirm: 'Are you sure? Deleting a work event will delete ALL its user events.' }, class: "btn btn-outline-danger" if current_user.admin? %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+  <% else %>
+    <div class="card-body">
+      Nothing scheduled for today.
+    </div>
+  <% end %>
+  <div class="card-footer text-muted">
+    Do you have a question or concern? Send us an email at thepassageshift@gmail.com
+  </div>
+</div>
