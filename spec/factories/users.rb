@@ -4,6 +4,7 @@ FactoryBot.define do
     last_name  { Faker::Name.last_name }
     email  { Faker::Internet.email }
     date_of_birth { Faker::Date.birthday }
+    phone { Faker::PhoneNumber.cell_phone_in_e164  }
     gender { Faker::Gender.type }
     pass = Faker::Internet.password
     password  { pass }
