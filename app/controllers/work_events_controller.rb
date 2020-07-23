@@ -9,11 +9,16 @@ class WorkEventsController < ApplicationController
   end
 
   def create
-    @work_event = WorkEvent.new(work_event_params)
-    if @work_event.save
-      flash[:notice] = 'Work event successfully created.'
-    else
-      flash[:alert] = 'Something went wrong please try again or contact the IT team.'
+    params[:replicate].present? ? replication = params[:replicate].to_i : replication = 0
+    (0..replication).each do |increment|
+      work_event = WorkEvent.new(work_event_params)
+      work_event.start_time += increment.days
+      work_event.end_time += increment.days
+      if work_event.save
+        flash[:notice] = "Work event successfully created."
+      else
+        flash[:alert] = 'Something went wrong. Try again or send us a message at thepassageshift@gmail.com'
+      end
     end
     redirect_to work_events_path
   end
