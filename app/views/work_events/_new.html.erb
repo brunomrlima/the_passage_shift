@@ -5,17 +5,28 @@
   <div class="card-body">
     <h5 class="card-title">Users will be able to join the work events.</h5>
     <p class="card-text">You are an admin and that's why you can create new events.</p>
+    <div class="row my-3">
+      <div class="col">
+        <button class="btn btn-warning" id="breakfast">Breakfast</button>
+      </div>
+      <div class="col">
+        <button class="btn btn-warning" id="lunch">Lunch</button>
+      </div>
+      <div class="col">
+        <button class="btn btn-warning" id="dinner">Dinner</button>
+      </div>
+    </div>
     <div class="container">
       <%= form_for @work_event do |f| %>
         <div class="form-group">
           <%= f.label :title, "Title*" %>
-          <%= f.text_field :title, placeholder: "Work Title...", class: 'form-control', required: true %>
+          <%= f.text_field :title, placeholder: "Work Title...", class: 'form-control', required: true, id: "title" %>
           <br />
           <%= f.label :description, "Description*" %>
-          <%= f.text_area :description, placeholder: "Work Description", class: 'form-control', required: true %>
+          <%= f.text_area :description, placeholder: "Work Description", class: 'form-control', required: true, id: "description" %>
           <br />
           <%= f.label :helpers_needed, "Number of helpers needed (leave it blank if not sure)" %>
-          <%= f.number_field :helpers_needed, step: 1, class: 'form-control' %>
+          <%= f.number_field :helpers_needed, step: 1, class: 'form-control', id: "helpers_needed" %>
           <br />
           <%= f.label :start_time %>
           <%= f.datetime_select :start_time, required: true %>
@@ -31,3 +42,10 @@
     Do you have a question or concern? Send us an email at thepassageshift@gmail.com
   </div>
 </div>
+
+<script>
+  // function default_breakfast() {
+  //     var title = document.getElementById('title');
+  //     title.value += ' after clicking';
+  // }
+</script>
