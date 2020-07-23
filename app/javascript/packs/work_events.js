@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on("turbolinks:load", function () {
     $('button#breakfast').on('click', function() {
         document.getElementById('title').value = 'Breakfast';
         document.getElementById('description').value = 'This is Breakfast';
