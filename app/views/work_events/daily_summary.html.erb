@@ -25,7 +25,7 @@
             <td>
               <div class="text-wrap">
                 <% work_event.users.each do |user| %>
-                  <%= link_to user.full_name, profile_path(user) %> (<%= user.phone %>) <br />
+                  <%= link_to user.full_name, profile_path(user) %> <%= "( #{user.phone} )" if current_user.admin? %> <br />
                 <% end %>
               </div>
             </td>
