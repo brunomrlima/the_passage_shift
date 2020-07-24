@@ -15,8 +15,8 @@ class SendMailer < ApplicationMailer
     mail(to: @user.email, subject: "[REMOVED] #{start_time} | #{@work_event.title}")
   end
 
-  def send_work_event_help(user_id)
-    @work_events = WorkEvent.where({start_time: DateTime.now..DateTime.tomorrow.end_of_day}).order(:start_time)
+  def send_work_event_help(user_id, work_events = nil)
+    @work_events = work_events || WorkEvent.WorkEvent.fetch_work_events_with_not_enough_helpers_today_and_tomorrow
     @user = User.find(user_id)
     mail(to: @user.email, subject: "[HELP] Consider the Following Work Events")
   end
