@@ -12,7 +12,7 @@ $(document).on("turbolinks:load", function () {
     $('button#lunch').on('click', function() {
             document.getElementById('title').value = 'Lunch';
             document.getElementById('description').value = 'This is Lunch';
-            document.getElementById('helpers_needed').value = 4;
+            document.getElementById('helpers_needed').value = 5;
             document.getElementById('work_event_start_time_4i').value = "12";
             document.getElementById('work_event_start_time_5i').value = "00";
             document.getElementById('work_event_end_time_4i').value = "15";
