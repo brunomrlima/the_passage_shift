@@ -3,7 +3,14 @@ class EmailsController < ApplicationController
   before_action :admin_access
 
   def index
-    @users = User.all
+    @users = User.left_joins(:user_events).group(:id).order('COUNT(user_events.id) DESC')
+  end
+
+  def send_help
+    user = User.find_by(id: params[:id])
+    user.SendMailer.send_work_event_help.deliver_now
+    flash[:notice] = "Help Email sent."
+    redirect_to emails_path
   end
 
   private

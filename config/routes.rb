@@ -36,5 +36,9 @@ Rails.application.routes.draw do
 
   resources :profiles, only: [:show]
 
-  resources :emails, only: [:index]
+  resources :emails, only: [:index] do
+    collection do
+      get :send_help
+    end
+  end
 end

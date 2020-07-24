@@ -13,7 +13,7 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">User</th>
-        <th scope="col">Role</th>
+        <th scope="col"># of Work events</th>
         <th scope="col">Email</th>
         <th scope="col">Phone</th>
         <th scope="col">Action</th>
@@ -24,11 +24,11 @@
         <tr>
           <th scope="row"><%= i+1 %></th>
           <td><%= link_to user.full_name, profile_path(user) %></td>
-          <td><%= user.user_types.pluck(:type_name).join(" and ") %></td>
+          <td><%= user.user_events.count %></td>
           <td><%= user.email %></td>
           <td><%= user.phone %></td>
           <td>
-            <%= link_to "Revoke Admin", revoke_admin_user_types_path(user_id: user.id), class: "btn btn-danger" %>
+            <%= link_to "Send HELP", send_help_emails_path(user_id: user.id), class: "btn btn-warning" %>
           </td>
         </tr>
     <% end %>
