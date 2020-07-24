@@ -7,8 +7,8 @@ class EmailsController < ApplicationController
   end
 
   def send_help
-    user = User.find_by(id: params[:id])
-    user.SendMailer.send_work_event_help.deliver_now
+    user = User.find_by(id: params[:user_id])
+    SendMailer.send_work_event_help(user.id).deliver_now
     flash[:notice] = "Help Email sent."
     redirect_to emails_path
   end
