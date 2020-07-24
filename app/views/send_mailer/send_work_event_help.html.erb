@@ -1,0 +1,27 @@
+<div class="container mx-auto bg-light">
+  <div class="card text-white bg-secondary" style="margin-top: 15px;">
+    <div class="container">
+      <div class="card-header">Hello, <%= @user.first_name %></div>
+    </div>
+    <div class="card-body">
+      <h5 class="card-text text-center">This is a request for help directed to you.</h5>
+      <p class="card-text text-center">We think that you might help us with the following events:</p>
+      <div class="card bg-dark" style="margin: 15px;">
+        <% @work_events.each do |work_event| %>
+          <div class="text-center">
+            <h4 class="text-center text-warning">Work event title: <%= work_event.title %></h4>
+            Working day: <%= work_event.start_time.strftime("%d %b, %Y") %> <br />
+            Working hours: Work event hours:<%= work_event.start_time.strftime("%H:%M") %> to <%= work_event.end_time.strftime("%H:%M") %> <br />
+            Please access the link to help us: <br />
+            <%= link_to 'Work Event', work_event_url(work_event), class: 'btn btn-secondary' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="card-footer" style="margin: 15px;">
+      Have a nice day,
+      <br />
+      ~The Passage Shift Team
+    </div>
+  </div>
+</div>
