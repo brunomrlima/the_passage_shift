@@ -10,10 +10,16 @@ class WorkEvent < ApplicationRecord
         having('COUNT(user_events.id) < work_events.helpers_needed')
   end
 
-  def return_text_color
+  def return_text_color(user)
     helpers = helpers_needed || user_events.count + 1
     if user_events.count >= helpers
-      "text-danger"
+      klass = "text-danger"
     end
+
+    if UserEvent.where(user: user, work_event: self).present?
+      klass = "text-success"
+    end
+
+    klass
   end
 end
