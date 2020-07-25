@@ -12,6 +12,7 @@
             <h4 class="text-center text-warning">Work event title: <%= work_event.title %></h4>
             Working day: <%= work_event.start_time.strftime("%d %b, %Y") %> <br />
             Working hours: Work event hours:<%= work_event.start_time.strftime("%H:%M") %> to <%= work_event.end_time.strftime("%H:%M") %> <br />
+            Helpers: <b style="color: red;"><%= work_event.user_events.count %> of <%= work_event.helpers_needed %> </b> <br />
             Please access the link to help us: <br />
             <%= link_to 'Work Event', work_event_url(work_event), class: 'btn btn-secondary' %>
           </div>
