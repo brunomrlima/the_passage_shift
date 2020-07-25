@@ -13,7 +13,7 @@
         </div>
         <br />
         <% work_events.each do |work_event| %>
-          <a data-toggle="modal" data-target="#modal-window" data-remote="true" href="<%= open_modal_work_events_path(id: work_event.id) %>">
+          <a data-toggle="modal" data-target="#modal-window" data-remote="true" href="<%= open_modal_work_events_path(id: work_event.id) %>" class="<%= work_event.return_text_color %>">
             <%= "#{work_event.start_time.strftime("%H:%M")}-#{work_event.end_time.strftime("%H:%M")}" %>
             <br />
             <%= work_event.title%>
