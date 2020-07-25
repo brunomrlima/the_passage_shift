@@ -28,7 +28,7 @@
           <td><%= user.email %></td>
           <td><%= user.phone %></td>
           <td>
-            <%= link_to "Request HELP", send_help_emails_path(user_id: user.id), class: "btn btn-warning" %>
+            <%= link_to "Request HELP", request_help_emails_path(user_id: user.id), class: "btn btn-warning" %>
           </td>
         </tr>
     <% end %>
@@ -36,7 +36,7 @@
     </table>
   </div>
 
-  <%= link_to "Request HELP from all users", send_help_to_all_emails_path, class: "btn btn-warning", data: {confirm: "Are you sure? This will send an email to all users."} %>
+  <%= link_to "Request HELP from all users", request_help_to_all_emails_path, class: "btn btn-warning", data: {confirm: "Are you sure? This will send an email to all users."} %>
 
   <div class="card-footer text-muted">
     Do you have a question or concern? Send us an email at thepassageshift@gmail.com

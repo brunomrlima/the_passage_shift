@@ -5,7 +5,7 @@ namespace :emails do
     work_events = WorkEvent.fetch_work_events_with_not_enough_helpers_today_and_tomorrow
     if work_events.present?
       User.find_each do |user|
-        SendMailer.send_work_event_help(user.id, work_events).deliver_now
+        SendMailer.request_work_event_help(user.id, work_events).deliver_now
       end
     end
     puts 'Done!'

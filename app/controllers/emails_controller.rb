@@ -6,16 +6,16 @@ class EmailsController < ApplicationController
     @users = User.left_joins(:user_events).group(:id).order('COUNT(user_events.id) DESC')
   end
 
-  def send_help
+  def request_help
     user = User.find_by(id: params[:user_id])
-    SendMailer.send_work_event_help(user.id).deliver_now
+    SendMailer.request_work_event_help(user.id).deliver_now
     flash[:notice] = "Help Email sent."
     redirect_to emails_path
   end
 
-  def send_help_to_all
+  def request_help_to_all
     User.find_each do |user|
-      SendMailer.send_work_event_help(user.id).deliver_now
+      SendMailer.request_work_event_help(user.id).deliver_now
     end
     flash[:notice] = "Help Email was sent to all the users."
     redirect_to emails_path
