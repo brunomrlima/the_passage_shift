@@ -9,4 +9,11 @@ class WorkEvent < ApplicationRecord
         group(:id).
         having('COUNT(user_events.id) < work_events.helpers_needed')
   end
+
+  def return_text_color
+    helpers = helpers_needed || user_events.count + 1
+    if user_events.count >= helpers
+      "text-danger"
+    end
+  end
 end
