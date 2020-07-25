@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'static_pages/home'
+  get 'rank', action: :rank, controller: 'static_pages'
   get 'work_events/index'
   devise_for :users
   authenticated :user do

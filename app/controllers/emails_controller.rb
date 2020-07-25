@@ -3,7 +3,7 @@ class EmailsController < ApplicationController
   before_action :admin_access
 
   def index
-    @users = User.left_joins(:user_events).group(:id).order('COUNT(user_events.id) DESC')
+    @users = User.fetch_and_order_users_by_user_events
   end
 
   def request_help

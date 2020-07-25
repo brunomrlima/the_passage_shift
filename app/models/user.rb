@@ -27,4 +27,8 @@ class User < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def self.fetch_and_order_users_by_user_events
+    self.left_joins(:user_events).group(:id).order('COUNT(user_events.id) DESC')
+  end
 end
