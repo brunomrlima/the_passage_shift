@@ -13,6 +13,14 @@ class EmailsController < ApplicationController
     redirect_to emails_path
   end
 
+  def send_help_to_all
+    User.find_each do |user|
+      SendMailer.send_work_event_help(user.id).deliver_now
+    end
+    flash[:notice] = "Help Email was sent to all the users."
+    redirect_to emails_path
+  end
+
   private
 
     def admin_access

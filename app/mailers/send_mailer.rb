@@ -16,7 +16,7 @@ class SendMailer < ApplicationMailer
   end
 
   def send_work_event_help(user_id, work_events = nil)
-    @work_events = work_events || WorkEvent.WorkEvent.fetch_work_events_with_not_enough_helpers_today_and_tomorrow
+    @work_events = work_events || WorkEvent.fetch_work_events_with_not_enough_helpers_today_and_tomorrow
     @user = User.find(user_id)
     mail(to: @user.email, subject: "[HELP] Consider the Following Work Events")
   end

@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   resources :emails, only: [:index] do
     collection do
       get :send_help
+      get :send_help_to_all
     end
   end
 end
